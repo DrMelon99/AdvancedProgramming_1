@@ -22,12 +22,14 @@
     <ClCompile Include="source\canvas.c" />
     <ClCompile Include="source\jjuggumi.c" />
     <ClCompile Include="source\keyin.c" />
+    <ClCompile Include="source\media.c" />
     <ClCompile Include="source\sample.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\canvas.h" />
     <ClInclude Include="source\jjuggumi.h" />
     <ClInclude Include="source\keyin.h" />
+    <ClInclude Include="source\media.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

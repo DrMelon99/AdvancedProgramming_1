@@ -1,1 +1,7 @@
-﻿  jjuggumi_game.vcxproj -> Z:\Develop\git\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe
+﻿  media.c
+Z:\Develop\git\AdvancedProgramming\jjuggumi_game\source\media.c(31,17): warning C4244: '함수': 'double'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Z:\Develop\git\AdvancedProgramming\jjuggumi_game\source\media.c(35,17): warning C4244: '함수': 'double'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Z:\Develop\git\AdvancedProgramming\jjuggumi_game\source\media.c(39,22): warning C4244: '함수': 'double'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Z:\Develop\git\AdvancedProgramming\jjuggumi_game\source\media.c(43,22): warning C4244: '함수': 'double'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+Z:\Develop\git\AdvancedProgramming\jjuggumi_game\source\media.c(47,17): warning C4244: '함수': 'double'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  jjuggumi_game.vcxproj -> Z:\Develop\git\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe

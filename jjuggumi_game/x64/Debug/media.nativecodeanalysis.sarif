@@ -1,0 +1,43 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.37.32824.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///z:/develop/git/advancedprogramming/jjuggumi_game/source/media.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "b55dc28b222fc138b1617fabdb833deb93736c9b73e0a1abc9f088f8f897a0a4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///z:/develop/git/advancedprogramming/jjuggumi_game/source/media.h"
+          },
+          "hashes": {
+            "sha-256": "b27ff562242ff52adf58f869bf7f2d75011509b2fb8906bbb5190e1ae2c26a3e"
+          }
+        }
+      ]
+    }
+  ]
+}

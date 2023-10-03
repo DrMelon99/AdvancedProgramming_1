@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <Windows.h>
+#include "media.h"
+
+void title(void)
+{
+	printf("==================================================================================================\n");
+	printf("=       #       # #     #  #####   #####  #     # #     # ###     #####     #    #     # ####### =\n");
+	printf("=       #       # #     # #     # #     # #     # ##   ##  #     #     #   # #   ##   ## #       =\n");
+	printf("=       #       # #     # #       #       #     # # # # #  #     #        #   #  # # # # #       =\n");
+	printf("=       #       # #     # #  #### #  #### #     # #  #  #  #     #  #### #     # #  #  # #####   =\n");
+	printf("= #     # #     # #     # #     # #     # #     # #     #  #     #     # ####### #     # #       =\n");
+	printf("= #     # #     # #     # #     # #     # #     # #     #  #     #     # #     # #     # #       =\n");
+	printf("=  #####   #####   #####   #####   #####   #####  #     # ###     #####  #     # #     # ####### =\n");
+	printf("==================================================================================================\n");
+
+}
+
+void intromedia(void)
+{
+	int sound = 0;
+
+	while (sound < 26)
+	{
+		if (sound == 0 || sound == 1 || sound == 2 || sound == 3 ||
+			sound == 4 || sound == 5 || sound == 7 || sound == 8 ||
+			sound == 12 || sound == 13 || sound == 14 || sound == 15 ||
+			sound == 16 || sound == 17 || sound == 18 || sound == 19)
+		{
+			Beep(SOUND_C / 2, 300);
+		}
+		else if (sound == 6)
+		{
+			Beep(SOUND_E / 2, 300);
+		}
+		else if (sound == 9 || sound == 11 || sound == 20 || sound == 22)
+		{
+			Beep(SOUND_Asharp / 4, 300);
+		}
+		else if (sound == 10 || sound == 21 || sound == 23)
+		{
+			Beep(SOUND_Gsharp / 4, 300);
+		}
+		else // SOUND_F
+		{
+			Beep(SOUND_F / 4, 300);
+		}
+
+		if (sound == 2 || sound == 5 || sound == 12 || sound == 15 || sound == 18 || sound == 25)
+		{
+			Sleep(300);
+		}
+		else
+		{
+			Sleep(20);
+		}
+
+		sound++;
+	}
+}
