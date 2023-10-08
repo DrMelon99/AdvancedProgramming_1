@@ -29,7 +29,7 @@ int randint(int low, int high)
 
 int jjuggumi_init(void)
 {
-	system("mode con: cols=200 lines=70");
+	system("mode con: cols=100 lines=68");
 	srand((unsigned int)time(NULL));
 
 	printf("플레이어 수: ");
@@ -69,11 +69,9 @@ void jebi(void)
 
 void intro(void)
 {
-	title();
-
-	intromedia();
-
-
+	enline(2, 98);
+	introsong();
+	system("cls");
 }
 
 void ending(void)

@@ -15,7 +15,9 @@
 #define SOUND_Asharp 1864.655
 #define SOUND_B 1975.533
 
-void title(void);
-void intromedia(void);
+void enline(int n, int m);
+
+void introtitle(int n);
+void introsong(void);
 
 #endif
