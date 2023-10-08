@@ -11,12 +11,12 @@ int main(void)
 {
 	jjuggumi_init();
 	intro(); // 쭈꾸미 게임 인트로
-	mugunghwa(); // 무궁화 꽃이 피었습니다
-	//nightgame(); // 야간운동
-	//juldarigi(); // 줄다리기
-	//jebi(); // 제비 뽑기
+	// mugunghwa(); // 무궁화 꽃이 피었습니다
+	// nightgame(); // 야간운동
+	// juldarigi(); // 줄다리기
+	// jebi(); // 제비 뽑기
+	// sample();
 	ending(); // 쭈꾸미 게임 엔딩
-	//sample();
 
 	return 0;
 }
@@ -45,26 +45,6 @@ int jjuggumi_init(void)
 	tick = 0;
 
 	return 0;
-}
-
-void mugunghwa(void)
-{
-	tick += 10;
-}
-
-void nightgame(void)
-{
-	tick += 10;
-}
-
-void juldarigi(void)
-{
-	tick += 10;
-}
-
-void jebi(void)
-{
-	tick += 10;
 }
 
 void intro(void)

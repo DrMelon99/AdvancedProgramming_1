@@ -3,6 +3,7 @@
 
 #include <Windows.h>
 #include <stdbool.h>
+#include "games.h"
 
 #define PLAYER_MAX 10 // 최대 플레이어 수 10
 
@@ -12,12 +13,6 @@ int tick;  // 시계
 
 int randint(int low, int high); // low 이상 high 이하 난수를 발생시키는 함수
 int jjuggumi_init(void); // main() 시작 시 쭈꾸미 게임 플레이어 수를 입력 받음
-
-// ===== 미니 게임 목록 =====
-void mugunghwa(void); // [무궁화 꽃이 피었습니다] 함수
-void nightgame(void); // [야간운동] 함수
-void juldarigi(void); // [줄다리기] 함수
-void jebi(void); // [제비 뽑기] 함수
 
 // ===== 기타 목록 =====
 void intro(void); // [쭈꾸미 게임 인트로] 함수
