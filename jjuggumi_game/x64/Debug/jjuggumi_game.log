@@ -1,2 +1,3 @@
-﻿  games.c
-  jjuggumi_game.vcxproj -> Z:\Develop\git\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe
+﻿  sample.c
+Z:\Dev\AdvancedProgramming\jjuggumi_game\source\sample.c(21,2): warning C4013: 'SetConsoleFontSize'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  jjuggumi_game.vcxproj -> Z:\Dev\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe

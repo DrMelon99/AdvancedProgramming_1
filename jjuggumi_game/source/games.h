@@ -7,4 +7,9 @@ void nightgame(void); // [야간운동] 함수
 void juldarigi(void); // [줄다리기] 함수
 void jebi(void); // [제비 뽑기] 함수
 
+void mugunghwa_init(void);
+void nightgame_init(void);
+void juldarigi_init(void);
+void jebi_init(void);
+
 #endif

@@ -3,6 +3,7 @@
 
 #include <Windows.h>
 #include <stdbool.h>
+
 #include "games.h"
 
 #define PLAYER_MAX 10 // 최대 플레이어 수 10

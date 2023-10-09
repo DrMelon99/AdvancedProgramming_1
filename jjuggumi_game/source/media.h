@@ -20,4 +20,6 @@ void enline(int n, int m);
 void introtitle(int n);
 void introsong(void);
 
+void SetConsoleFontSize(int size);
+
 #endif

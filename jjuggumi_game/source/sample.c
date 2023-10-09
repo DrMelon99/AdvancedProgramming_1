@@ -16,6 +16,11 @@ void move_tail(int i, int nx, int ny);
 int px[PLAYER_MAX], py[PLAYER_MAX], period[PLAYER_MAX];  // 각 플레이어 위치, 이동 주기
 
 void sample_init(void) {
+	system("cls");
+
+	SetConsoleFontSize(20);
+	system("mode con: cols=40 lines=30");
+
 	map_init(15, 40);
 	int x, y;
 	for (int i = 0; i < n_player; i++) {
@@ -88,6 +93,8 @@ void sample(void) {
 
 	system("cls");
 	display();
+	dialog("");
+
 	while (1) {
 		// player 0만 손으로 움직임(4방향)
 		key_t key = get_key();

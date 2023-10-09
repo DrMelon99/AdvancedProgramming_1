@@ -78,5 +78,12 @@ void print_status(void) {
 }
 
 void dialog(char message[]) {
+	int timer = DIALOG_DURATION_SEC;
+
+	while (timer > 0)
+	{
+		printf("%d초 후 게임 시작", timer--);
+		Sleep(1000);
+	}
 
 }

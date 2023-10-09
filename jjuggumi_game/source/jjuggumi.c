@@ -15,7 +15,7 @@ int main(void)
 	// nightgame(); // 야간운동
 	// juldarigi(); // 줄다리기
 	// jebi(); // 제비 뽑기
-	// sample();
+	sample();
 	ending(); // 쭈꾸미 게임 엔딩
 
 	return 0;
@@ -29,11 +29,20 @@ int randint(int low, int high)
 
 int jjuggumi_init(void)
 {
-	system("mode con: cols=100 lines=68");
+	// SetConsoleTitle("JJUGGUMI GAME");
+
+	SetConsoleFontSize(26);
+	system("mode con: cols=25 lines=2");
+
 	srand((unsigned int)time(NULL));
 
-	printf("플레이어 수: ");
-	scanf_s("%d", &n_player); // 플레이어 수 입력 받기
+	do
+	{
+		printf("플레이어 수 (1~10): ");
+		scanf_s("%d", &n_player); // 플레이어 수 입력 받기
+
+	} while (n_player < 1 || n_player > 10);
+	
 
 	n_alive = n_player; // 살아남은 플레이어 수를 입력받은 플레이어 수로 초기화
 
@@ -44,17 +53,23 @@ int jjuggumi_init(void)
 
 	tick = 0;
 
+	system("cls");
+
 	return 0;
 }
 
 void intro(void)
 {
-	enline(2, 98);
-	introsong();
-	system("cls");
+	//SetConsoleFontSize(10); // 콘솔 글씨 크기 변경
+	//system("mode con: cols=140 lines=165"); // 콘솔 창 크기 조정
+
+	//enline(2, 140);
+	//introsong();
+	//system("cls");
 }
 
 void ending(void)
 {
 
 }
+
