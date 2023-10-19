@@ -1,15 +1,19 @@
 #include "jjuggumi.h"
 #include "keyin.h"
+#include "canvas.h"
 
 void mugunghwa(void)
 {
 	mugunghwa_init();
 	
-	dialog();
-
 	display();
+
+	dialog("초 뒤 게임시작");
+	
 	while (1)
 	{
+		
+
 		key_t key = get_key();
 		if (key == K_QUIT) {
 			break;
@@ -44,6 +48,8 @@ void mugunghwa_init(void)
 	system("mode con: cols=40 lines=30");
 
 	map_init(15, 40);
+
+
 
 	tick = 0;
 }

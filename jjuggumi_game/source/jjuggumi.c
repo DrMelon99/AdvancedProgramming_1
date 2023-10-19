@@ -10,12 +10,12 @@
 int main(void)
 {
 	jjuggumi_init();
-	intro(); // 쭈꾸미 게임 인트로
-	// mugunghwa(); // 무궁화 꽃이 피었습니다
+	// intro(); // 쭈꾸미 게임 인트로
+	mugunghwa(); // 무궁화 꽃이 피었습니다
 	// nightgame(); // 야간운동
 	// juldarigi(); // 줄다리기
 	// jebi(); // 제비 뽑기
-	sample();
+	// sample();
 	ending(); // 쭈꾸미 게임 엔딩
 
 	return 0;
@@ -64,7 +64,7 @@ void intro(void)
 	system("mode con: cols=140 lines=165"); // 콘솔 창 크기 조정
 
 	enline(2, 140);
-	introsong();
+	song(1, 0);
 	system("cls");
 }
 

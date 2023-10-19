@@ -93,7 +93,7 @@ void sample(void) {
 
 	system("cls");
 	display();
-	dialog("");
+	// dialog("");
 
 	while (1) {
 		// player 0만 손으로 움직임(4방향)

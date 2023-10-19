@@ -94,11 +94,32 @@ void print_status(void) {
 void dialog(char message[])
 {
 	int timer = DIALOG_DURATION_SEC;
+	int size = sizeof(message) / sizeof(message[0]);
 
-	//while (timer > 0)
-	//{
-	//	printf("%d초 후 게임 시작", timer--);
-	//	Sleep(1000);
-	//}
+	printf("%dbyte", size);
+
+	while (timer > 0)
+	{
+		for (int i = 0; i < size + 3; i++)
+		{
+			back_buf[(N_ROW / 2) - 1][(N_COL - size) / 2 + i] = '=';
+
+			if (i == 0 || size - 1)
+			{
+				back_buf[(N_ROW / 2)][(N_COL - size) / 2 + i] = '=';
+			}
+			else
+			{
+				back_buf[(N_ROW / 2) + 1][(N_COL - size) / 2 + i] = message[i];
+			}
+			
+			back_buf[(N_ROW / 2) + 1][(N_COL - size) / 2 + i] = '=';
+		}
+
+		// printf("%d%s", timer--, message);
+		display();
+		timer--;
+		Sleep(1000);
+	}
 
 }
