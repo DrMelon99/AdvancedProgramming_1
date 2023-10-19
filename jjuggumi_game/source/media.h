@@ -15,11 +15,16 @@
 #define SOUND_Asharp 1864.655
 #define SOUND_B 1975.533
 
+// 줄바꿈 기능
 void enline(int n, int m);
 
+// 인트로 타이틀 아스키 아트
 void introtitle(int n);
+
+// 인트로 음악
 void introsong(void);
 
+// 콘솔 창의 폰트 크기 조정
 void SetConsoleFontSize(int size);
 
 #endif

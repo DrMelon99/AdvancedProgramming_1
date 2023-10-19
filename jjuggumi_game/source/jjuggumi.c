@@ -60,12 +60,12 @@ int jjuggumi_init(void)
 
 void intro(void)
 {
-	//SetConsoleFontSize(10); // 콘솔 글씨 크기 변경
-	//system("mode con: cols=140 lines=165"); // 콘솔 창 크기 조정
+	SetConsoleFontSize(10); // 콘솔 글씨 크기 변경
+	system("mode con: cols=140 lines=165"); // 콘솔 창 크기 조정
 
-	//enline(2, 140);
-	//introsong();
-	//system("cls");
+	enline(2, 140);
+	introsong();
+	system("cls");
 }
 
 void ending(void)

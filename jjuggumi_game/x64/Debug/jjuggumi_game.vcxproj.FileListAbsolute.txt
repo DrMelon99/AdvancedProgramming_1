@@ -1,1 +1,2 @@
 Z:\Dev\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe
+D:\dev\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe
