@@ -1,6 +1,8 @@
 #ifndef _GAMES_H_
 #define _GAMES_H_
 
+#define TIMER_MENT "초 후 게임시작"
+
 // [무궁화 꽃이 피었습니다] 함수
 void mugunghwa(void);
 

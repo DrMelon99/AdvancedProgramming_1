@@ -4,8 +4,6 @@
 #include "jjuggumi.h"
 #include "canvas.h"
 
-#define DIALOG_DURATION_SEC		4
-
 void draw(void);
 void print_status(void);
 
@@ -94,32 +92,24 @@ void print_status(void) {
 void dialog(char message[])
 {
 	int timer = DIALOG_DURATION_SEC;
-	int size = sizeof(message) / sizeof(message[0]);
+	int size = (sizeof(message) / sizeof(message[0])) * 2;
 
-	printf("%dbyte", size);
+	int Center_ROW = (N_ROW / 2) - 1;
+	int Center_COL = ((N_COL - 2) - size) / 2;
 
-	while (timer > 0)
+	for (int i = 0; i < size + 3; i++)
 	{
-		for (int i = 0; i < size + 3; i++)
-		{
-			back_buf[(N_ROW / 2) - 1][(N_COL - size) / 2 + i] = '=';
+		back_buf[Center_ROW - 1][Center_COL + i] = '=';
 
-			if (i == 0 || size - 1)
-			{
-				back_buf[(N_ROW / 2)][(N_COL - size) / 2 + i] = '=';
-			}
-			else
-			{
-				back_buf[(N_ROW / 2) + 1][(N_COL - size) / 2 + i] = message[i];
-			}
-			
-			back_buf[(N_ROW / 2) + 1][(N_COL - size) / 2 + i] = '=';
+		if (i == 0 || i == (size + 2))
+		{
+			back_buf[Center_ROW][Center_COL + i] = '=';
+		}
+		else
+		{
+			back_buf[Center_ROW][Center_COL + i] = message[i];
 		}
 
-		// printf("%d%s", timer--, message);
-		display();
-		timer--;
-		Sleep(1000);
+		back_buf[Center_ROW + 1][Center_COL + i] = '=';
 	}
-
 }

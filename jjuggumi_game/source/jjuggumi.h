@@ -8,6 +8,8 @@
 
 #define PLAYER_MAX 10 // 최대 플레이어 수 10
 
+#define DIALOG_DURATION_SEC		4
+
 bool player[PLAYER_MAX];  // 기본값 true, 탈락하면 false
 int n_player, n_alive; // 플레이어 수, 살아남은 플레이어 수
 int tick;  // 시계

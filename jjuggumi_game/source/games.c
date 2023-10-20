@@ -1,6 +1,12 @@
+#pragma warning(disable : 4996)
+
+#include <string.h>
 #include "jjuggumi.h"
 #include "keyin.h"
 #include "canvas.h"
+#include "media.h"
+
+int send_message[20] = { ' ' };
 
 void mugunghwa(void)
 {
@@ -8,7 +14,15 @@ void mugunghwa(void)
 	
 	display();
 
-	dialog("초 뒤 게임시작");
+	for (int i = DIALOG_DURATION_SEC; i > 0; i--)
+	{
+		strcat(send_message, (char)i);
+		strcat(send_message, TIMER_MENT);
+
+		printf("%s\n", send_message);
+
+		// dialog(strcat((char)i, "초 후 게임시작"));
+	}
 	
 	while (1)
 	{
@@ -47,7 +61,7 @@ void mugunghwa_init(void)
 	SetConsoleFontSize(20);
 	system("mode con: cols=40 lines=30");
 
-	map_init(15, 40);
+	map_init(12, 40);
 
 
 
