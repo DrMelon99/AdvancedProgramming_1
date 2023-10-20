@@ -1,4 +1,6 @@
 // 2023-2 고급프로그래밍 과제: 쭈꾸미 게임 // 살려조 팀원 [박제혁, 명지호 오소민]
+#pragma warning(disable : 4996)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

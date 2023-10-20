@@ -3,6 +3,8 @@
 
 #define TIMER_MENT "초 후 게임시작"
 
+#define MUGUNWHA_MENT "무 궁 화 꽃 이 피 었 습 니 다"
+
 // [무궁화 꽃이 피었습니다] 함수
 void mugunghwa(void);
 
@@ -14,7 +16,6 @@ void juldarigi(void);
 
 // [제비 뽑기] 함수
 void jebi(void); 
-
 
 
 // [무궁화 꽃이 피었습니다] 초기 진입 함수
