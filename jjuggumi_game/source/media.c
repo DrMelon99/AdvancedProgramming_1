@@ -4,81 +4,48 @@
 
 #include "media.h"
 
-void song(int songnum, int sound)
+void titlesong()
 {
-	switch (songnum)
+
+	int sound = 0;
+
+	while (sound < 26)
 	{
-		case 1:
+		if (sound == 0 || sound == 1 || sound == 2 || sound == 3 ||
+			sound == 4 || sound == 5 || sound == 7 || sound == 8 ||
+			sound == 12 || sound == 13 || sound == 14 || sound == 15 ||
+			sound == 16 || sound == 17 || sound == 18 || sound == 19)
 		{
-			int sound = 0;
-
-			while (sound < 26)
-			{
-				if (sound == 0 || sound == 1 || sound == 2 || sound == 3 ||
-					sound == 4 || sound == 5 || sound == 7 || sound == 8 ||
-					sound == 12 || sound == 13 || sound == 14 || sound == 15 ||
-					sound == 16 || sound == 17 || sound == 18 || sound == 19)
-				{
-					Beep(SOUND_C / 2, 250);
-				}
-				else if (sound == 6)
-				{
-					Beep(SOUND_E / 2, 250);
-				}
-				else if (sound == 9 || sound == 11 || sound == 20 || sound == 22)
-				{
-					Beep(SOUND_Asharp / 4, 250);
-				}
-				else if (sound == 10 || sound == 21 || sound == 23)
-				{
-					Beep(SOUND_Gsharp / 4, 250);
-				}
-				else // SOUND_F
-				{
-					Beep(SOUND_F / 4, 250);
-				}
-
-				if (sound == 2 || sound == 5 || sound == 12 || sound == 15 || sound == 18 || sound == 25)
-				{
-					Sleep(250);
-				}
-				else
-				{
-					Sleep(20);
-				}
-
-				introtitle(sound++);
-			}
-			break;
-		}	
-		case 2:
-		{
-			if (sound == 0 || sound == 7 || sound == 8)
-			{
-				Beep(SOUND_D / 2, 250);
-			}
-			else if (sound == 1 || sound == 2 || sound == 3 || sound == 5 || sound == 6)
-			{
-				Beep(SOUND_G / 2, 250);
-			}
-			else // SOUND_F
-			{
-				Beep(SOUND_F / 4, 250);
-			}
-
-			if (sound == 2 || sound == 4)
-			{
-				Sleep(250);
-			}
-			else
-			{
-				Sleep(20);
-			}
-			break;
+			Beep(SOUND_C / 2, 250);
 		}
-	}
+		else if (sound == 6)
+		{
+			Beep(SOUND_E / 2, 250);
+		}
+		else if (sound == 9 || sound == 11 || sound == 20 || sound == 22)
+		{
+			Beep(SOUND_Asharp / 4, 250);
+		}
+		else if (sound == 10 || sound == 21 || sound == 23)
+		{
+			Beep(SOUND_Gsharp / 4, 250);
+		}
+		else // SOUND_F
+		{
+			Beep(SOUND_F / 4, 250);
+		}
 
-	
+		if (sound == 2 || sound == 5 || sound == 12 || sound == 15 || sound == 18 || sound == 25)
+		{
+			Sleep(250);
+		}
+		else
+		{
+			Sleep(20);
+		}
+
+		introtitle(sound++);
+	}
 }
 
 void introtitle(int n)
@@ -301,6 +268,31 @@ void introtitle(int n)
 			break;
 		default:
 			break;
+	}
+}
+
+void mugunghwasong(int sound)
+{
+	if (sound == 0 || sound == 7 || sound == 8)
+	{
+		Beep(SOUND_D / 2, 250);
+	}
+	else if (sound == 1 || sound == 2 || sound == 3 || sound == 5 || sound == 6)
+	{
+		Beep(SOUND_G / 2, 250);
+	}
+	else // SOUND_F
+	{
+		Beep(SOUND_F / 4, 250);
+	}
+
+	if (sound == 2 || sound == 4)
+	{
+		Sleep(250);
+	}
+	else
+	{
+		Sleep(20);
 	}
 }
 

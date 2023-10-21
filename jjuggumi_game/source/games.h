@@ -5,6 +5,9 @@
 
 #define MUGUNWHA_MENT "무 궁 화 꽃 이 피 었 습 니 다"
 
+void move_random(int player, int dir);
+void move_tail(int player, int nx, int ny);
+
 // [무궁화 꽃이 피었습니다] 함수
 void mugunghwa(void);
 

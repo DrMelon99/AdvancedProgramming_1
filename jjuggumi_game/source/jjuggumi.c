@@ -66,7 +66,7 @@ void intro(void)
 	system("mode con: cols=140 lines=165"); // 콘솔 창 크기 조정
 
 	enline(2, 140);
-	song(1, 0);
+	titlesong();
 	system("cls");
 }
 

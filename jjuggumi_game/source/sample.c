@@ -65,28 +65,7 @@ void move_manual(key_t key) {
 }
 
 // 0 <= dir < 4가 아니면 랜덤
-void move_random(int player, int dir) {
-	int p = player;  // 이름이 길어서...
-	int nx, ny;  // 움직여서 다음에 놓일 자리
 
-	// 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)	
-
-	do {
-		nx = px[p] + randint(-1, 1);
-		ny = py[p] + randint(-1, 1);
-	} while (!placable(nx, ny));
-
-	move_tail(p, nx, ny);
-}
-
-// back_buf[][]에 기록
-void move_tail(int player, int nx, int ny) {
-	int p = player;  // 이름이 길어서...
-	back_buf[nx][ny] = back_buf[px[p]][py[p]];
-	back_buf[px[p]][py[p]] = ' ';
-	px[p] = nx;
-	py[p] = ny;
-}
 
 void sample(void) {
 	sample_init();

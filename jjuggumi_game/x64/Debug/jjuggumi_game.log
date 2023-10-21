@@ -1,5 +1,2 @@
-﻿  games.c
-D:\dev\AdvancedProgramming\jjuggumi_game\source\games.c(39,3): warning C4013: 'printf'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-D:\dev\AdvancedProgramming\jjuggumi_game\source\games.c(49,4): warning C4013: 'move_manual'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-D:\dev\AdvancedProgramming\jjuggumi_game\source\games.c(55,5): warning C4013: 'move_random'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-  jjuggumi_game.vcxproj -> D:\dev\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe
+﻿  canvas.c
+  jjuggumi_game.vcxproj -> Z:\Dev\AdvancedProgramming\jjuggumi_game\x64\Debug\jjuggumi_game.exe

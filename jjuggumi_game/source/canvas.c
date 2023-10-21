@@ -89,27 +89,90 @@ void print_status(void) {
 	}
 }
 
-void dialog(char message[])
+void dialog(int opt, int left_s)
 {
-	int timer = DIALOG_DURATION_SEC;
-	int size = (sizeof(message) / sizeof(message[0])) * 2;
+	char time_ment[] = "초 후 게임시작";
+	char start_ment[] = "!!게 임 시 작 !!";
+	char out_ment[] = "플레이어 탈락!";
 
-	int Center_ROW = (N_ROW / 2) - 1;
-	int Center_COL = ((N_COL - 2) - size) / 2;
 
-	for (int i = 0; i < size + 3; i++)
+	int Center_ROW = (N_ROW / 2) - 2;
+	int Center_COL = ((N_COL -4) - 22) / 2;
+
+	// '=' 다이얼 박스 생성
+	for (int i = 0; i < 25; i++)
 	{
-		back_buf[Center_ROW - 1][Center_COL + i] = '=';
-
-		if (i == 0 || i == (size + 2))
+		for (int j = 0; j < 5; j++)
 		{
-			back_buf[Center_ROW][Center_COL + i] = '=';
+			back_buf[Center_ROW + j][Center_COL + i] = '=';
 		}
-		else
-		{
-			back_buf[Center_ROW][Center_COL + i] = message[i];
-		}
-
-		back_buf[Center_ROW + 1][Center_COL + i] = '=';
 	}
+	
+	// 다이얼 박스 공백 생성
+	for (int i = 1; i < 24; i++)
+	{
+		for (int j = 1; j < 4; j++)
+		{
+			back_buf[Center_ROW + j][Center_COL + i] = ' ';
+		}
+	}
+
+	
+	if (left_s > 0)
+	{
+		// 멘트 출력
+		for (int i = 0; i < 15; i++)
+		{
+			if (opt == 0) // 남은 초 멘트
+			{
+				back_buf[Center_ROW + 2][Center_COL + 4] = left_s + 48; // 초 
+				back_buf[Center_ROW + 2][Center_COL + 6 + i] = time_ment[i]; // + 멘트
+			}
+			else if (opt == 1) // 탈락자 멘트 + 수정 필요
+			{
+				back_buf[Center_ROW + 2][Center_COL + 4] = left_s + 48; // 초 
+				back_buf[Center_ROW + 2][Center_COL + 6 + i] = time_ment[i]; // + 멘트
+			}
+		}
+		
+	}
+
+	else // 타이머 0
+	{
+		display();
+		for (int i = 0; i < 16 ; i++)
+		{
+			back_buf[Center_ROW + 2][Center_COL + 4 + i] = start_ment[i]; // 게임 시작 멘트
+		}
+
+		display();
+		Sleep(1000);
+
+		for (int i = 0; i < 16; i++)
+		{
+			back_buf[Center_ROW + 2][Center_COL + 4 + i] = '.'; // 게임 시작 멘트
+		}
+
+
+		/*for (int i = 0; i < 25; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				back_buf[Center_ROW + j][Center_COL + i] = '.';
+			}
+		}*/
+
+		display();
+
+		for (int i = 0; i < 25; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				back_buf[Center_ROW + j][Center_COL + i] = ' ';
+			}
+		}
+	}
+
+	display();
+	Sleep(1000);
 }

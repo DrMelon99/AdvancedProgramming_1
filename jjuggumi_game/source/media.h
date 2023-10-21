@@ -22,7 +22,10 @@ void enline(int n, int m);
 void introtitle(int n);
 
 // 음악 재생 함수
-void song(int songnum, int sound);
+void titlesong(void);
+
+// 무궁화 꽃이 피었습니다 노래 재생 함수
+void mugunghwasong(int sound);
 
 // 콘솔 창의 폰트 크기 조정
 void SetConsoleFontSize(int size);
