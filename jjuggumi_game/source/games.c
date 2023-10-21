@@ -82,7 +82,7 @@ void move_tail(int player, int nx, int ny)
 	{
 		for (int i = 1; i < 10 ; i++)
 		{
-			if (player_status[i]  && ((ny > py[i]) && (nx == px[i])))
+			if (player_status[i]  && ((ny > py[i]) && (nx == px[i]))) // 문제 해결
 			{
 				back_buf[nx][ny] = back_buf[px[p]][py[p]]; // 이동
 				back_buf[px[p]][py[p]] = ' '; // 이동 전 흔적 지우기
