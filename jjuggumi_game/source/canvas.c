@@ -68,7 +68,7 @@ void display(void)
 
 // 
 void draw(void) {
-	for (int row = 0; row < N_ROW; row++)
+	for (int row = 0; row < N_ROW+1; row++) // 무궁화 꽃이 피었습니다 출력을 위해 임의로 N_ROW에 + 1
 	{
 		for (int col = 0; col < N_COL; col++)
 		{
@@ -121,20 +121,24 @@ void dialog(int opt, int left_s)
 	if (left_s > 0)
 	{
 		// 멘트 출력
-		for (int i = 0; i < 15; i++)
+		if (opt == 0) // 남은 초 멘트
 		{
-			if (opt == 0) // 남은 초 멘트
-			{
-				back_buf[Center_ROW + 2][Center_COL + 4] = left_s + 48; // 초 
-				back_buf[Center_ROW + 2][Center_COL + 6 + i] = time_ment[i]; // + 멘트
-			}
-			else if (opt == 1) // 탈락자 멘트 + 수정 필요
+			for (int i = 0; i < 15; i++)
 			{
 				back_buf[Center_ROW + 2][Center_COL + 4] = left_s + 48; // 초 
 				back_buf[Center_ROW + 2][Center_COL + 6 + i] = time_ment[i]; // + 멘트
 			}
 		}
-		
+		else if (opt == 1) // 탈락자 멘트 + 수정 필요
+		{
+			for (int i = 0; i < 15; i++)
+			{
+				back_buf[Center_ROW + 2][Center_COL + 4] = left_s + 48; // 초 
+				back_buf[Center_ROW + 2][Center_COL + 6 + i] = time_ment[i]; // + 멘트
+			}
+		}
+		display();
+		Sleep(1000);
 	}
 
 	else // 타이머 0
@@ -142,7 +146,7 @@ void dialog(int opt, int left_s)
 		display();
 		for (int i = 0; i < 16 ; i++)
 		{
-			back_buf[Center_ROW + 2][Center_COL + 4 + i] = start_ment[i]; // 게임 시작 멘트
+			back_buf[Center_ROW + 2][Center_COL + 5 + i] = start_ment[i]; // 게임 시작 멘트
 		}
 
 		display();
@@ -152,16 +156,6 @@ void dialog(int opt, int left_s)
 		{
 			back_buf[Center_ROW + 2][Center_COL + 4 + i] = '.'; // 게임 시작 멘트
 		}
-
-
-		/*for (int i = 0; i < 25; i++)
-		{
-			for (int j = 0; j < 5; j++)
-			{
-				back_buf[Center_ROW + j][Center_COL + i] = '.';
-			}
-		}*/
-
 		display();
 
 		for (int i = 0; i < 25; i++)
@@ -171,8 +165,6 @@ void dialog(int opt, int left_s)
 				back_buf[Center_ROW + j][Center_COL + i] = ' ';
 			}
 		}
+		display();
 	}
-
-	display();
-	Sleep(1000);
 }

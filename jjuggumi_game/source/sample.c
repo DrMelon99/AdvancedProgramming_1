@@ -3,10 +3,7 @@
 #include "keyin.h"
 #include <stdio.h>
 
-#define DIR_UP		0
-#define DIR_DOWN	1
-#define DIR_LEFT	2
-#define DIR_RIGHT	3
+
 
 void sample_init(void);
 void move_manual(key_t key);
@@ -31,7 +28,7 @@ void sample_init(void) {
 		} while (!placable(x, y));
 		px[i] = x;
 		py[i] = y;
-		period[i] = randint(100, 500);
+		
 
 		back_buf[px[i]][py[i]] = '0' + i;  // (0 .. n_player-1)
 	}
@@ -39,30 +36,7 @@ void sample_init(void) {
 	tick = 0;
 }
 
-void move_manual(key_t key) {
-	// 각 방향으로 움직일 때 x, y값 delta
-	static int dx[4] = { -1, 1, 0, 0 };
-	static int dy[4] = { 0, 0, -1, 1 };
 
-	int dir;  // 움직일 방향(0~3)
-	switch (key) {
-	case K_UP: dir = DIR_UP; break;
-	case K_DOWN: dir = DIR_DOWN; break;
-	case K_LEFT: dir = DIR_LEFT; break;
-	case K_RIGHT: dir = DIR_RIGHT; break;
-	default: return;
-	}
-
-	// 움직여서 놓일 자리
-	int nx, ny;
-	nx = px[0] + dx[dir];
-	ny = py[0] + dy[dir];
-	if (!placable(nx, ny)) {
-		return;
-	}
-
-	move_tail(0, nx, ny);
-}
 
 // 0 <= dir < 4가 아니면 랜덤
 

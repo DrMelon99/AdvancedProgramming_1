@@ -275,24 +275,15 @@ void mugunghwasong(int sound)
 {
 	if (sound == 0 || sound == 7 || sound == 8)
 	{
-		Beep(SOUND_D / 2, 250);
+		Beep(SOUND_D / 2, 500);
 	}
 	else if (sound == 1 || sound == 2 || sound == 3 || sound == 5 || sound == 6)
 	{
-		Beep(SOUND_G / 2, 250);
+		Beep(SOUND_G / 2, 500);
 	}
 	else // SOUND_F
 	{
-		Beep(SOUND_F / 4, 250);
-	}
-
-	if (sound == 2 || sound == 4)
-	{
-		Sleep(250);
-	}
-	else
-	{
-		Sleep(20);
+		Beep(SOUND_F / 4, 500);
 	}
 }
 
