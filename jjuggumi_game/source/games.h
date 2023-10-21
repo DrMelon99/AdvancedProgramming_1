@@ -15,6 +15,9 @@ void move_tail(int player, int nx, int ny);
 
 bool yh_killmode;
 
+int count;
+
+
 // [무궁화 꽃이 피었습니다] 함수
 void mugunghwa(void);
 

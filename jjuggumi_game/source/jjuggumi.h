@@ -10,9 +10,13 @@
 
 #define DIALOG_DURATION_SEC		4
 
-bool player[PLAYER_MAX];  // 기본값 true, 탈락하면 false
-int n_player, n_alive; // 플레이어 수, 살아남은 플레이어 수
+bool player_status[PLAYER_MAX];  // 기본값 true, 탈락하면 false
+bool player_statuspost[PLAYER_MAX];
+
+int player_outlist[PLAYER_MAX];
+int n_player, n_alive, n_alivepost; // 플레이어 수, 살아남은 플레이어 수, 이전 대조값
 int tick;  // 시계
+int pass_n_player;
 
 int randint(int low, int high); // low 이상 high 이하 난수를 발생시키는 함수
 int jjuggumi_init(void); // main() 시작 시 쭈꾸미 게임 플레이어 수를 입력 받음

@@ -14,6 +14,7 @@
 // 윈도우API로도 가능: https://game-happy-world.tistory.com/46
 char front_buf[ROW_MAX][COL_MAX];
 char back_buf[ROW_MAX][COL_MAX];
+char temp_buf[ROW_MAX][COL_MAX];
 
 // 맵 크기(위의 buf는 텍스트까지 포함한 캔버스 크기)
 int N_ROW, N_COL;

@@ -14,30 +14,42 @@ void move_random(int player, int dir)
 	int nx, ny;  // 움직여서 다음에 놓일 자리
 
 	// 움직일 공간이 없는 경우는 없다고 가정(무한 루프에 빠짐)	
-
 	do
 	{
-		if (randint(0, 10) < 7) // NPC 앞으로 -> 70%
+		if (randint(0, 1000) < 700) // NPC 앞으로 -> 70% / 영희의 킬모드가 켜질 경우 NPC 제자리 -> 70%
 		{
 			nx = px[p];
-			ny = py[p] - 1;
+			if (yh_killmode == false)
+			{
+				ny = py[p] - 1;
+			}
+			else
+			{
+				ny = py[p];
+			}
 		}
-		else if (randint(0, 10) == 8) // NPC 위로 -> 10%
+		else if (randint(0, 1000) >= 700 && randint(0, 1000) < 800) // NPC 위로 -> 10%
 		{
 			nx = px[p] - 1;
 			ny = py[p];
 		}
-		else if (randint(0, 10) == 9) // NPC 아래로 -> 10%
+		else if (randint(0, 1000) >= 800 && randint(0, 1000) < 900) // NPC 아래로 -> 10%
 		{
 			nx = px[p] + 1;
 			ny = py[p];
 		}
-		else // 제자리 -> 10%
+		else // NPC 제자리 -> 10% / 영희의 킬모드가 켜질 경우 NPC 앞으로 10%
 		{
 			nx = px[p];
-			ny = py[p];
+			if (yh_killmode == false)
+			{
+				ny = py[p];
+			}
+			else
+			{
+				ny = py[p] - 1;
+			}
 		}
-
 	} while (!placable(nx, ny));
 
 	move_tail(p, nx, ny);
@@ -47,10 +59,46 @@ void move_random(int player, int dir)
 void move_tail(int player, int nx, int ny)
 {
 	int p = player;  // 이름이 길어서...
-	back_buf[nx][ny] = back_buf[px[p]][py[p]];
-	back_buf[px[p]][py[p]] = ' ';
-	px[p] = nx;
-	py[p] = ny;
+
+	if ((yh_killmode == false) || ((back_buf[nx][ny] == back_buf[px[p]][py[p]]))) // 킬모드 꺼짐, 가만히 있음
+	{
+		if ((ny == 1) || (ny == 2 && (nx > 5 && nx < 9))) // 통과하면 없애기
+		{
+			pass_n_player++;
+			back_buf[nx][ny] = ' '; // 없애기
+			back_buf[px[p]][py[p]] = ' '; // 이동 전 흔적 지우기
+			px[p] = nx;
+			py[p] = ny;
+		}
+		else
+		{
+			back_buf[nx][ny] = back_buf[px[p]][py[p]]; // 이동
+			back_buf[px[p]][py[p]] = ' '; // 이동 전 흔적 지우기
+			px[p] = nx;
+			py[p] = ny;
+		}
+	}
+	else if((yh_killmode == true))
+	{
+		for (int i = 1; i < 10 ; i++)
+		{
+			if (player_status[i]  && ((ny > py[i]) && (nx == px[i])))
+			{
+				back_buf[nx][ny] = back_buf[px[p]][py[p]]; // 이동
+				back_buf[px[p]][py[p]] = ' '; // 이동 전 흔적 지우기
+				px[p] = nx;
+				py[p] = ny;
+				break;
+			}
+			else
+			{
+				player_status[p] = false;
+				n_alive--;
+				back_buf[px[p]][py[p]] = ' ';
+				break;
+			}
+		}
+	}
 }
 
 void move_manual(key_t key) {
@@ -75,6 +123,7 @@ void move_manual(key_t key) {
 		return;
 	}
 
+
 	move_tail(0, nx, ny);
 }
 
@@ -83,21 +132,20 @@ void mugunghwa(void)
 	mugunghwa_init();
 	display();
 
-
 	// 게임 시작 타이머
-	/*for (int i = DIALOG_DURATION_SEC; i > -1 ; i--)
+	for (int i = DIALOG_DURATION_SEC; i > -1 ; i--)
 	{
 		dialog(0 , i);
-	}*/
+	}
 	
 	while (1)
 	{
-		// 여기에 영희가 "무궁화 꽃이 피었습니다" 말하기 배치
+		// 영희의 "무궁화 꽃이 피었습니다" 말하기 및 상태 전환
 		younghee();
 
 		// 사용자 움직임 키입력
 		key_t key = get_key();
-		if (key == K_QUIT)
+		if ((key == K_QUIT) || (n_alive == 1) || (count > 3) || (pass_n_player == n_alive))
 		{
 			break;
 		}
@@ -115,12 +163,9 @@ void mugunghwa(void)
 			}
 		}
 
-
-
 		display();
 		Sleep(10);
 		tick += 10;
-		
 	}
 }
 
@@ -129,9 +174,12 @@ void mugunghwa_init(void)
 	system("cls");
 
 	SetConsoleFontSize(20);
-	system("mode con: cols=60 lines=30");
+	system("mode con: cols=60 lines=40");
 
 	map_init(15, 60);
+
+	count = pass_n_player = 0;
+
 
 	// 영희 배치
 	for (int i = 0; i < 3; i++)
@@ -149,7 +197,7 @@ void mugunghwa_init(void)
 		} while (!placable(x, y));
 		px[i] = x;
 		py[i] = y;
-		period[i] = randint(100, 250);
+		period[i] = randint(100, 500);
 
 		back_buf[px[i]][py[i]] = '0' + i;  // (0 .. n_player-1)
 	}
@@ -161,11 +209,9 @@ void younghee(void)
 {
 	int ment = 0;
 
-	if (tick < 13100)
+	if (tick < 6600)
 	{
-		yh_killmode = false;
-
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++) // 영희 '#'
 		{
 			back_buf[6 + i][1] = '#';
 		}
@@ -176,67 +222,90 @@ void younghee(void)
 			while (ment < 3)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 25:
+		case 15:
 			while (ment < 6)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 45:
+		case 25:
 			while (ment < 9)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 65:
+		case 35:
 			while (ment < 12)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 85:
+		case 45:
 			while (ment < 15)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 100:
+		case 52:
 			while (ment < 18)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 115:
+		case 57:
 			while (ment < 21)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 125:
+		case 60:
 			while (ment < 24)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 127:
+		case 63:
 			while (ment < 27)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
-		case 130:
+		case 65:
 			while (ment < 30)
 				back_buf[15][ment] = MUGUNWHA_MENT[ment++];
 			break;
 		}
 	}
-	else
+	else if (tick > 6600 && tick < 9000)
 	{
 		yh_killmode = true;
 
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++) // 영희 '@'
 		{
 			back_buf[6 + i][1] = '@';
 		}
-		
-		if (tick > 15000)
+	}
+	else if(tick > 9000) // 패배자 출력
+	{
+		// 탈락자 검색
+		if (n_alivepost != n_alive)
 		{
-			for (int i = 0; i < 30; i++)
+			n_alivepost = n_alive; // 이전값과 동기화
+
+			for (int i = 0; i < n_player; i++)
 			{
-				back_buf[15][i] = '.';
-			}
-			display();
-			for (int i = 0; i < 30; i++)
-			{
-				back_buf[15][i] = ' ';
+				player_outlist[i] = 'v';
 			}
 
-			tick = 0;
+			for (int i = 0, j = 0; i < n_player; i++)
+			{
+				if (player_statuspost[i] != player_status[i])
+				{
+					player_statuspost[i] = player_status[i];
+					player_outlist[j++] = i;
+				}
+			}
+
+			dialog(1, 1);
 		}
+
+		for (int i = 0; i < 30; i++) // 무궁화 멘트 지우기
+		{
+			back_buf[15][i] = '.';
+		}
+		display();
+		for (int i = 0; i < 30; i++)
+		{
+			back_buf[15][i] = ' ';
+		}
+
+		yh_killmode = false;
+		tick = 0; // 틱 초기화
+		count++;
 	}
 }
 

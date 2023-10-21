@@ -62,7 +62,7 @@ bool placable(int row, int col)
 void display(void)
 {
 	draw();
-	gotoxy(N_ROW + 4, 0);  // 추가로 표시할 정보가 있으면 맵과 상태창 사이의 빈 공간에 출력
+	gotoxy(N_ROW + 3, 0);  // 추가로 표시할 정보가 있으면 맵과 상태창 사이의 빈 공간에 출력
 	print_status();
 }
 
@@ -82,10 +82,10 @@ void draw(void) {
 }
 
 void print_status(void) {
-	printf("no. of players left: %d\n", n_alive);
+	printf("no. of players left: %2d\n", n_alive);
 	for (int p = 0; p < n_player; p++)
 	{
-		printf("player %2d: %5s\n", p, player[p] ? "alive" : "DEAD");
+		printf("player %2d: %5s\n", p, player_status[p] ? "alive" : "DEAD");
 	}
 }
 
@@ -100,7 +100,7 @@ void dialog(int opt, int left_s)
 	int Center_COL = ((N_COL -4) - 22) / 2;
 
 	// '=' 다이얼 박스 생성
-	for (int i = 0; i < 25; i++)
+	for (int i = 0; i < 33; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
@@ -109,7 +109,7 @@ void dialog(int opt, int left_s)
 	}
 	
 	// 다이얼 박스 공백 생성
-	for (int i = 1; i < 24; i++)
+	for (int i = 1; i < 32 ; i++)
 	{
 		for (int j = 1; j < 4; j++)
 		{
@@ -128,19 +128,59 @@ void dialog(int opt, int left_s)
 				back_buf[Center_ROW + 2][Center_COL + 4] = left_s + 48; // 초 
 				back_buf[Center_ROW + 2][Center_COL + 6 + i] = time_ment[i]; // + 멘트
 			}
+			display();
+			Sleep(1000);
 		}
-		else if (opt == 1) // 탈락자 멘트 + 수정 필요
+		else if (opt == 1) // 탈락자 멘트
 		{
-			for (int i = 0; i < 15; i++)
+			for (int i = 0; i < N_ROW; i++) // 화면 잠시 복사
 			{
-				back_buf[Center_ROW + 2][Center_COL + 4] = left_s + 48; // 초 
-				back_buf[Center_ROW + 2][Center_COL + 6 + i] = time_ment[i]; // + 멘트
+				for (int j = 0; j < N_COL; j++)
+				{
+					temp_buf[i][j] = front_buf[i][j];
+				}
 			}
-		}
-		display();
-		Sleep(1000);
-	}
 
+			for (int i = 0 ; i < 15; i++)
+			{
+				for (int j = 0 ; j < n_player - n_alive ; j++)
+				{
+					if (player_outlist[j] != 'v')
+					{
+						back_buf[Center_ROW + 2][Center_COL + 4 + j] = player_outlist[j] + 48; // 플레이어
+					}
+				}
+				back_buf[Center_ROW + 2][Center_COL + 6 + n_player - n_alive + i] = out_ment[i]; // + 멘트
+			}
+			display();
+			Sleep(3000);
+
+			for (int i = 0; i < 33; i++)
+			{
+				for (int j = 0; j < 5; j++)
+				{
+					back_buf[Center_ROW + j][Center_COL + i] = '.';
+				}
+			}
+			display();
+			for (int i = 0; i < 33; i++)
+			{
+				for (int j = 0; j < 5; j++)
+				{
+					back_buf[Center_ROW + j][Center_COL + i] = ' ';
+				}
+			}
+
+			for (int i = 0; i < N_ROW; i++) // 화면 복구
+			{
+				for (int j = 0; j < N_COL; j++)
+				{
+					back_buf[i][j] = temp_buf[i][j];
+				}
+			}
+			display();
+		}
+	}
 	else // 타이머 0
 	{
 		display();
@@ -154,11 +194,11 @@ void dialog(int opt, int left_s)
 
 		for (int i = 0; i < 16; i++)
 		{
-			back_buf[Center_ROW + 2][Center_COL + 4 + i] = '.'; // 게임 시작 멘트
+			back_buf[Center_ROW + 2][Center_COL + 4 + i] = '.';
 		}
 		display();
 
-		for (int i = 0; i < 25; i++)
+		for (int i = 0; i < 33; i++)
 		{
 			for (int j = 0; j < 5; j++)
 			{
